@@ -2,7 +2,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 // Import modules
-import sets from '../modules/module-sets';
+import sets from './modules/module-sets/index';
+import cards from './modules/module-cards/index';
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ const store = new Vuex.Store({
   strict: process.env.DEV,
   modules: {
     sets,
+    cards,
   },
 });
 
