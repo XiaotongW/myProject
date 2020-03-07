@@ -1,5 +1,3 @@
-export default function () {
-  return {
-    //
-  }
-}
+const state = {};
+
+export default state;
