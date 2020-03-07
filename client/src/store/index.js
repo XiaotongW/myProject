@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-// import example from './module-example'
+// Import modules
+import sets from '../modules/module-sets';
 
 Vue.use(Vuex);
 
@@ -14,11 +15,10 @@ Vue.use(Vuex);
  * with the Store instance.
  */
 const store = new Vuex.Store({
-  // enable strict mode (adds overhead!)
-  // for dev mode only
+  // enable strict mode (adds overhead!) for dev mode only
   strict: process.env.DEV,
   modules: {
-    // example
+    sets,
   },
 });
 
