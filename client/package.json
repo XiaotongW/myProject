@@ -17,10 +17,15 @@
     "@quasar/extras": "^1.0.0",
     "axios": "^0.19.0",
     "bluebird": "^3.7.2",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
-    "lodash.at": "^4.6.0",
+    "numeric": "^1.2.6",
     "quasar": "^1.0.0",
-    "vue-i18n": "^8.0.0"
+    "vue-i18n": "^8.0.0",
+    "vue-scroll-behavior": "^0.2.0",
+    "vue-scrollto": "^2.17.1",
+    "vue2-leaflet": "^2.5.2",
+    "vuelidate": "^0.7.5"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0",
