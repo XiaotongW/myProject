@@ -2,8 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 // Import modules
-import sets from './modules/module-sets/index';
-import cards from './modules/module-cards/index';
+import set from './modules/module-sets/sets';
 
 Vue.use(Vuex);
 
@@ -18,9 +17,11 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   // enable strict mode (adds overhead!) for dev mode only
   strict: process.env.DEV,
+  // When namespaces is true all of its getters, actions and mutations will be automatically
+  // namespaced based on the path the module is registered at
+  namespaced: true,
   modules: {
-    sets,
-    cards,
+    set,
   },
 });
 

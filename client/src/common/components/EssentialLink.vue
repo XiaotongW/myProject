@@ -4,11 +4,11 @@
     tag="a"
     target="_blank"
     :href="link"
-  >
-    <q-item-section
-      v-if="icon"
-      avatar
     >
+      <q-item-section
+        v-if="icon"
+        avatar
+      >
       <q-icon :name="icon" />
     </q-item-section>
 
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'EssentialLink',
   props: {
@@ -43,6 +44,15 @@ export default {
     icon: {
       type: String,
       default: '',
+    },
+  },
+  mounted() {
+    this.initialize();
+  },
+  computed: {
+  },
+  methods: {
+    initialize() {
     },
   },
 };

@@ -9,4 +9,4 @@ const actions = {
   someAction(/* context */) {},
 };
 
-export default actions;
+export default { actions };
