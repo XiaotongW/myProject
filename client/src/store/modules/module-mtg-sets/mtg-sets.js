@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 import _ from 'lodash';
-// import mtgValue from 'src/common/utils/mtgValue.js';
+import fsUtils from '../../../common/utils/fileUtils';
 
 const APImtg = require('mtgsdk');
 
@@ -45,7 +45,6 @@ const mutations = {
     state.setsList = sets;
     state.setsLoaded = true;
   },
-
 };
 
 // Action functions (Could be asynchronous)
@@ -75,34 +74,32 @@ const actions = {
       return Promise.resolve(store.state.setsList);
     }
     store.commit('allSetLoading');
-    return new Promise(resolve => resolve(APImtg.set.where({})))
+
+    return fsUtils.fs_FileRead('mtgSets.json')
       .then((response) => {
-        if (typeof response.error === 'string') {
-          throw response.error;
+        if (typeof response.data !== 'undefined' && response.data !== null) {
+          return Promise.resolve(response.data);
+        }
+        return new Promise(resolve => resolve(APImtg.set.where({})))
+          .then((apiResult) => {
+            fsUtils.fs_FileWrite('mtgSets.json', apiResult);
+            return Promise.resolve(apiResult);
+          });
+      })
+      .then((response) => {
+        if (store.state.setsLoaded === true) {
+          return Promise.resolve();
         }
         store.commit('allSetLoaded', { sets: response });
         return Promise.resolve(store.state.setsList);
       })
       .catch(err => Promise.reject(err.error || err));
   },
-
 };
 
 // Getters function
 // Usually used to compute derived state based on store state
 const getters = {
-  getAllSetsGroup(state) {
-    if (Array.isArray(state.setsList) === false || state.setsList.length < 1) {
-      return {};
-    }
-    return _(state.setsList)
-      .orderBy(
-        ['releaseDate', 'block', 'type', 'name', 'code', 'onlineOnly'],
-        ['desc', 'asc', 'asc', 'asc', 'asc', 'asc'],
-      )
-      .groupBy('releaseDate')
-      .value();
-  },
 };
 
 // Single state tree

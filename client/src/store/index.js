@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 // Import modules
-import set from './modules/module-sets/sets';
+import mtgSet from './modules/module-mtg-sets/mtg-sets';
 
 Vue.use(Vuex);
 
@@ -21,7 +21,7 @@ const store = new Vuex.Store({
   // namespaced based on the path the module is registered at
   namespaced: true,
   modules: {
-    set,
+    mtgSet,
   },
 });
 

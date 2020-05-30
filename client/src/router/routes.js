@@ -10,8 +10,8 @@ const routes = [
         component: () => import('pages/Index.vue'),
       },
       {
-        path: '/sets',
-        component: () => import('pages/sets/List.vue'),
+        path: '/mtg-sets',
+        component: () => import('pages/mtg-sets/List.vue'),
       },
     ],
   },

@@ -49,6 +49,8 @@ export default {
   mounted() {
     this.initialize();
   },
+  created() {
+  },
   computed: {
   },
   methods: {

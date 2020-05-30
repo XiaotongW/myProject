@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHH Lpr lff">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -11,13 +11,11 @@
           @click="leftDrawerOpen = !leftDrawerOpen">
         </q-btn>
 
-        <q-toolbar-title>Quasar App</q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <q-toolbar-title>{{ mtgName }}</q-toolbar-title>
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered content-class="bg-grey-1">
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered content-class="bg-grey-2">
       <q-list>
 
         <q-item
@@ -35,11 +33,11 @@
 
         <q-item
           clickable
-          to="/sets"
+          to="/mtg-sets"
           @click="leftDrawerOpen = false"
           >
           <q-item-section>
-            <q-item-label>{{ 'Sets' }}</q-item-label>
+            <q-item-label>{{ 'Magic The Gathering Sets' }}</q-item-label>
             <q-item-label caption>
               {{ 'List of all set in Magic The Gathering' }}
             </q-item-label>
@@ -56,6 +54,7 @@
 </template>
 
 <script>
+import { mtgName } from '../common/utils/mtgValue';
 
 export default {
   name: 'MainLayout',
@@ -66,6 +65,7 @@ export default {
   data() {
     return {
       leftDrawerOpen: false,
+      mtgName,
       links: [
         {
           title: 'Sets',
@@ -75,6 +75,10 @@ export default {
         },
       ],
     };
+  },
+  mounted() {
+    this.$store.dispatch('mtgSet/initialize')
+      .then(() => this.$store.dispatch('mtgSet/getAllSet'));
   },
 };
 </script>
